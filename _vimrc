@@ -17,7 +17,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'ascenator/L9', {'name': 'newL9'}
-Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-surround’a
 Plugin 'pangloss/vim-javascript'
 Plugin 'https://github.com/ternjs/tern_for_vim.git'
 Plugin 'mxw/vim-jsx'
@@ -39,7 +39,7 @@ Plugin 'justinj/vim-react-snippets'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
+Plugin 'wikitopian/hardmode'
 
 " Start NERDTree
 autocmd vimenter * NERDTree /Users/jrawls/Projects
@@ -75,6 +75,10 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+" noremap h <NOP> 
+" noremap j <NOP>
+" noremap k <NOP>
+" noremap l <NOP>
 
 set relativenumber
 set number
