@@ -17,7 +17,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'ascenator/L9', {'name': 'newL9'}
-Plugin 'tpope/vim-surround’a
+Plugin 'tpope/vim-surround'
 Plugin 'pangloss/vim-javascript'
 Plugin 'https://github.com/ternjs/tern_for_vim.git'
 Plugin 'mxw/vim-jsx'
@@ -40,59 +40,10 @@ Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wikitopian/hardmode'
-
-" Start NERDTree
-autocmd vimenter * NERDTree /Users/jrawls/Projects
-" Go to previous (last accessed) window
-autocmd Vimenter * wincmd p
-
-
-function! NERDTreeQuit()
-  redir => buffersoutput
-  silent buffers
-  redir END
-"                     1BufNo  2Mods.     3File           4LineNo
-  let pattern = '^\s*\(\d\+\)\(.....\) "\(.*\)"\s\+line \(\d\+\)$'
-  let windowfound = 0
-
-  for bline in split(buffersoutput, "\n")
-    let m = matchlist(bline, pattern)
-
-    if (len(m) > 0)
-      if (m[2] =~ '..a..')
-        let windowfound = 1
-      endif
-    endif
-  endfor
-
-  if (!windowfound)
-    quitall
-  endif
-endfunction
-autocmd WinEnter * call NERDTreeQuit()
-
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-" noremap h <NOP> 
-" noremap j <NOP>
-" noremap k <NOP>
-" noremap l <NOP>
-
-set relativenumber
-set number
-set tabstop=2
-set guifont=Consolas:h8
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
-syntax enable
-syntax on
-" Set the colorscheme 
-autocmd vimenter * colorscheme Tomorrow-Night
-autocmd vimenter * AirlineTheme light
-
+Plugin 'benmills/vimux'
+Plugin 'tpope/vim-commentary'
+Plugin 'vim-scripts/CSApprox'
+Plugin 'scrooloose/syntastic'	
 
 
 
@@ -110,3 +61,39 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+" noremap h <NOP> 
+" noremap j <NOP>
+" noremap k <NOP>
+" noremap l <NOP>
+
+let mapleader=","
+let g:syntastic_check_on_open=1
+
+map <leader>r : NERDTreeFind<cr>
+map <C-n> :NERDTreeToggle<cr>
+
+set t_Co=256 " Tell vim that terminal supports 256 colors
+set autoindent
+set smartindent
+set relativenumber
+set number
+set tabstop=4
+syntax on
+
+" set background=dark
+" Set the colorscheme 
+autocmd vimenter * colorscheme hemisu
+autocmd vimenter * AirlineTheme monokai
+" Go to previous (last accessed) window
+autocmd Vimenter * wincmd p
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * if &modifiable | NERDTreeFind | wincmd p | endif
+
+
+
