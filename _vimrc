@@ -44,7 +44,7 @@ Plugin 'benmills/vimux'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/CSApprox'
 Plugin 'scrooloose/syntastic'	
-
+Plugin 'bling/vim-bufferline'
 
 
 " All of your Plugins must be added before the following line
@@ -83,17 +83,21 @@ set autoindent
 set smartindent
 set relativenumber
 set number
-set tabstop=4
+set tabstop=2
+set laststatus=2
 syntax on
 
 " set background=dark
 " Set the colorscheme 
 autocmd vimenter * colorscheme hemisu
-autocmd vimenter * AirlineTheme monokai
+autocmd vimenter * AirlineTheme light
+
+" Open nerdtree if Vim has oeen opened without a file argument
+autocmd vimenter * if !argc() | NERDTree | endif
 " Go to previous (last accessed) window
-autocmd Vimenter * wincmd p
+autocmd vimenter * wincmd p
+" close vim if Nerdtree is the only buffer reamining open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-autocmd BufEnter * if &modifiable | NERDTreeFind | wincmd p | endif
 
 
 
